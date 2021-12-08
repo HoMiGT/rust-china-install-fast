@@ -28,6 +28,7 @@
       cargo 
       
   3. 修改cargo的国内源
+  
      vim $HOME/.cargo/config 
      
         [source.crates-io]
