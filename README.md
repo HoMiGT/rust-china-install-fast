@@ -30,30 +30,28 @@
   3. 修改cargo的国内源
      vim $HOME/.cargo/config 
      
-      [source.crates-io]
-      registry = "https://github.com/rust-lang/crates.io-index"
-      # 指定镜像
-      replace-with = 'tuna' # 如：tuna、sjtu、ustc，或者 rustcc
+     [source.crates-io]
+     registry = "https://github.com/rust-lang/crates.io-index"
+     \# 指定镜像
+     replace-with = 'tuna' \# 如：tuna、sjtu、ustc，或者 rustcc
+     \# 注：以下源配置一个即可，无需全部
+     \# 中国科学技术大学
+     [source.ustc]
+     registry = "https://mirrors.ustc.edu.cn/crates.io-index"
+     \# >>> 或者 <<<
+     \# registry = "git://mirrors.ustc.edu.cn/crates.io-index"
 
-      # 注：以下源配置一个即可，无需全部
+     \# 上海交通大学
+     [source.sjtu]
+     registry = "https://mirrors.sjtug.sjtu.edu.cn/git/crates.io-index/"
 
-      # 中国科学技术大学
-      [source.ustc]
-      registry = "https://mirrors.ustc.edu.cn/crates.io-index"
-      # >>> 或者 <<<
-      # registry = "git://mirrors.ustc.edu.cn/crates.io-index"
+     \# 清华大学
+     [source.tuna]
+     registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
 
-      # 上海交通大学
-      [source.sjtu]
-      registry = "https://mirrors.sjtug.sjtu.edu.cn/git/crates.io-index/"
-
-      # 清华大学
-      [source.tuna]
-      registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
-
-      # rustcc社区
-      [source.rustcc]
-      registry = "https://code.aliyun.com/rustcc/crates.io-index.git"
+     \# rustcc社区
+     [source.rustcc]
+     registry = "https://code.aliyun.com/rustcc/crates.io-index.git"
 
      
      
