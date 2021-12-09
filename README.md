@@ -56,9 +56,8 @@
     [source.rustcc]
     registry = "https://code.aliyun.com/rustcc/crates.io-index.git"
         
-4. 当在mac中使用rust编译依赖opencv库的项目是报如下错：
+  4. 当在mac中使用rust编译依赖opencv库的项目是报如下错：
 
-  
     dyld: Library not loaded: @rpath/libclang.dylib
     出现这个错误的原因一般是无法找到c库，需要配置路径mac里需要下载x-code软件
    
