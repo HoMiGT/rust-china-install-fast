@@ -58,27 +58,27 @@
         
 4. 当在mac中使用rust编译依赖opencv库的项目是报如下错：
 
-   dyld: Library not loaded: @rpath/libclang.dylib
-   出现这个错误的原因一般是无法找到c库，需要配置路径mac里需要下载x-code软件
+    dyld: Library not loaded: @rpath/libclang.dylib
+    出现这个错误的原因一般是无法找到c库，需要配置路径mac里需要下载x-code软件
    
    
-   vim ~/.bash_profile 
-   export DYLD_FALLBACK_LIBRARY_PATH="$(xcode-select --print-path)/usr/lib/" 
-   或者
-   export DYLD_FALLBACK_LIBRARY_PATH="$(xcode-select --print-path)/Toolchains/XcodeDefault.xctoolchain/usr/lib/"
+    vim ~/.bash_profile 
+    export DYLD_FALLBACK_LIBRARY_PATH="$(xcode-select --print-path)/usr/lib/" 
+    或者
+    export DYLD_FALLBACK_LIBRARY_PATH="$(xcode-select --print-path)/Toolchains/XcodeDefault.xctoolchain/usr/lib/"
    
-   一般编译过程中依然会出现失败，我出现的异常是：
-   Can't probe using: pkg_config, continuing with other methods because: `"pkg-config" "--libs" "--cflags" "opencv4"` did not exit successfully:
-   原因是我装了几个版本，我把所有的版本重新卸载掉，重新装了opencv@3（brew install opencv@3）
-   之后配置了关于opencv的路径
+    一般编译过程中依然会出现失败，我出现的异常是：
+    Can't probe using: pkg_config, continuing with other methods because: `"pkg-config" "--libs" "--cflags" "opencv4"` did not exit successfully:
+    原因是我装了几个版本，我把所有的版本重新卸载掉，重新装了opencv@3（brew install opencv@3）
+    之后配置了关于opencv的路径
    
-   vim ~/.bash_profile
-   export PATH="/usr/local/opt/opencv@3/bin:$PATH"
-   export LDFLAGS="-L/usr/local/opt/opencv@3/lib"
-   export CPPFLAGS="-I/usr/local/opt/opencv@3/include"
-   export PKG_CONFIG_PATH="/usr/local/opt/opencv@3/lib/pkgconfig"
+    vim ~/.bash_profile
+    export PATH="/usr/local/opt/opencv@3/bin:$PATH"
+    export LDFLAGS="-L/usr/local/opt/opencv@3/lib"
+    export CPPFLAGS="-I/usr/local/opt/opencv@3/include"
+    export PKG_CONFIG_PATH="/usr/local/opt/opencv@3/lib/pkgconfig"
    
-   之后执行 RUST_BACKTRACE=full cargo build -vv 没有异常出现，编译成功！
+    之后执行 RUST_BACKTRACE=full cargo build -vv 没有异常出现，编译成功！
    
      
      
