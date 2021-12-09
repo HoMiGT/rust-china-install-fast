@@ -79,5 +79,21 @@
    
     之后执行 RUST_BACKTRACE=full cargo build -vv 没有异常出现，编译成功！
    
-     
+  5. 关于mac交叉编译linux版本
+    
+    目前为止我遇到的错误:
+    Internal error occurred: Failed to find tool. Is `musl-gcc` installed?  --->  
+        brew install FiloSottile/musl-cross/musl-cross
+        ln -s /usr/local/bin/x86_64-linux-musl-gcc /usr/local/bin/musl-gcc
+
+    error occurred: Failed to find tool. Is `musl-g++` installed?    ---> 
+        然而并未找到可以解决这个的问题
+    
+    所以在知乎上找到一个解决方案
+      链接地址: https://zhuanlan.zhihu.com/p/376471249
+      
+    
+
+
+    
      
