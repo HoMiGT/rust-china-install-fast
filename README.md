@@ -139,137 +139,137 @@
     = note: use the `-l` flag to specify native libraries to link
     = note: use the `cargo:rustc-link-lib` directive to specify the native libraries to link with Cargo (see https://doc.rust-lang.org/cargo/reference/build-scripts.html#cargorustc-link-libkindname)
 
-  error: could not compile `opencv` due to previous error
-  warning: build failed, waiting for other jobs to finish...
-  error: build failed
+    error: could not compile `opencv` due to previous error
+    warning: build failed, waiting for other jobs to finish...
+    error: build failed
   
-  或者 
+    或者 
   
-  提示什么 pkg_config,vcpkg,cmake 没有安装之类的信息，这个错误信息是我使用opencv-3.4.16版本后，并且降低了rust里opencv的版本之后报的，原因不明
+    提示什么 pkg_config,vcpkg,cmake 没有安装之类的信息，这个错误信息是我使用opencv-3.4.16版本后，并且降低了rust里opencv的版本之后报的，原因不明
+    
+    总结：核心是版本没有与gcc以及cmake等匹配，安装后的路径没有设置对
   
-  总结：核心是版本没有与gcc以及cmake等匹配，安装后的路径没有设置对
+    目前尝试成功了 
+    Cargo.toml
+    [dependencies]
+    opencv={versions="0.41.0",default_feature=false,features=["opencv-4"]}
   
-  目前尝试成功了 
-  Cargo.toml
-  [dependencies]
-  opencv={versions="0.41.0",default_feature=false,features=["opencv-4"]}
+    实际centos安装的版本是 opencv-4.5.4
+    期间2，3都安装了不好使，可能因为期间有些库或者环境不匹配的原因
   
-  实际centos安装的版本是 opencv-4.5.4
-  期间2，3都安装了不好使，可能因为期间有些库或者环境不匹配的原因
+    现将成功步骤总结如下
+    有些依赖需要的gcc版本>=6.0 而有些linux自带的版本4.8或者更低，所以需要我们自己手动去更新升级一下版本
   
-  现将成功步骤总结如下
-  有些依赖需要的gcc版本>=6.0 而有些linux自带的版本4.8或者更低，所以需要我们自己手动去更新升级一下版本
-  
-  1> 升级gcc,cmake,llvm 
-    1.1 gcc升级至8
+    1> 升级gcc,cmake,llvm 
+      1.1 gcc升级至8
     
-    安装centos-release-scl
-    sudo yum install centos-release-scl
+      安装centos-release-scl
+      sudo yum install centos-release-scl
     
-    安装devtoolset
-    sudo yum install devtoolset-8-gcc*
+      安装devtoolset
+      sudo yum install devtoolset-8-gcc*
     
-    激活对应的devtoolset
-    scl enable devtoolset-8 bash 
+      激活对应的devtoolset
+      scl enable devtoolset-8 bash 
     
-    查看对应版本
-    gcc -v
-    显示为 gcc version 8.3.1 20190311 (Red Hat 8.3.1-3) (GCC)
+      查看对应版本
+      gcc -v
+      显示为 gcc version 8.3.1 20190311 (Red Hat 8.3.1-3) (GCC)
+
+      这个只对此次终端有效，想要一劳永逸，则需要替换掉原来gcc版本的可执行文件
+      这个安装之后的目录是在 /opt/rh/devtoolset-8 下
+
+      要先找到gcc在哪儿
+      whereis gcc
+      /usr/bin/gcc /usr/lib/gcc /usr/libexec/gcc     
+
+      whereis g++
+      /usr/bin/g++
+
+      rm -rf /usr/bin/gcc 
+      rm -rf /usr/bin/g++
+      ln -s /opt/rh/devtoolset-8/root/bin/gcc /usr/bin/gcc
+      ln -s /opt/rh/devtoolset-8/root/bin/g++ /usr/bin/g++
+
+      为了防止执行加载的库还是gcc-4.8的，我将/usr/libexec/gcc下的依赖库也做了软链接
+      ln -s /opt/rh/devtoolset-8/root/lib/gcc/x86_64-redhat-linux/8 /usr/libexec/gcc/x86_64-redhat-linux
+      ln -s /opt/rh/devtoolset-8/root/lib/gcc/x86_64-redhat-linux/8 /usr/lib/gcc/x86_64-redhat-linux
+
+      至此就将gcc,g++升级成功了
+
+      1.2 升级cmake
+
+      我的服务器的centos-7.9 默认的cmake版本是2.8.12.2，在项目编译过程中，我察觉到有个库需要cmake>=3.0 固尝试决定升级cmake来解决该问题
+      先下载文件，下载在一个自定义的目录下，我的涉及系统的c/c++或者其他软件以来的程序一般都下载在/usr/local/src目录下
+      cd /usr/local/src
+      wget https://cmake.org/files/v3.14/cmake-3.14.2.tar.gz 
+      tar -vzxf cmake-3.14.2.tar.gz 
+
+      删除已安装的cmake版本
+      yum remove cmake -y
+      cd cmake-3.14.2
+
+      安装基本的编译工具
+      ./configure              # 可携带此参数指定安装目录 --prefix=/usr/local/cmake 。 我直接在源码里安装的
+      make && make install 
+
+      创建软链接
+      ln -s /usr/local/bin/cmake /usr/bin/cmake
+
+      查看版本
+      cmake --version
+
+      1.3 安装llvm 安装这个是比较麻烦的，依赖的东西比较多,我下载的版本是11.0.0 因为在编译过程中也报了clang的版本太低，需要升级
+
+      cd /usr/local/src 
+      wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/llvm-11.0.0.src.tar.xz
+      wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/clang-11.0.0.src.tar.xz
+      wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/compiler-rt-11.0.0.src.tar.xz
+      wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/clang-tools-extra-11.0.0.src.tar.xz
+      wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/libcxx-11.0.0.src.tar.xz
+      wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/libcxxabi-11.0.0.src.tar.xz
+
+      对下载的包进行解压
+      tar xvf llvm-11.0.0.src.tar.xz
+      tar xvf clang-11.0.0.src.tar.xz
+      tar xvf compiler-rt-11.0.0.src.tar.xz
+      tar xvf clang-tools-extra-11.0.0.src.tar.xz
+      tar xvf libcxx-11.0.0.src.tar.xz
+      tar xvf libcxxabi-11.0.0.src.tar.xz
+
+      对文件名进行重命名
+      mv clang-11.0.0.src clang 
+      mv compiler-rt-11.0.0.src compiler-rt
+      mv clang-tools-extra-11.0.0.src extra
+      mv libcxx-11.0.0.src libcxx
+      mv libcxxabi-11.0.0.src libcxxabi
+
+      cd llvm-11.0.0.src
+      mkdir build
+      cd build
+      cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_RTTI=ON -DLLVM_ENABLE_PROJECTS="clang;libcxx;libcxxabi" -G "Unix Makefiles" ..
+      make && make install 
+
+      查看版本
+      clang -v
     
-    这个只对此次终端有效，想要一劳永逸，则需要替换掉原来gcc版本的可执行文件
-    这个安装之后的目录是在 /opt/rh/devtoolset-8 下
-    
-    要先找到gcc在哪儿
-    whereis gcc
-    /usr/bin/gcc /usr/lib/gcc /usr/libexec/gcc     
-    
-    whereis g++
-    /usr/bin/g++
-    
-    rm -rf /usr/bin/gcc 
-    rm -rf /usr/bin/g++
-    ln -s /opt/rh/devtoolset-8/root/bin/gcc /usr/bin/gcc
-    ln -s /opt/rh/devtoolset-8/root/bin/g++ /usr/bin/g++
-    
-    为了防止执行加载的库还是gcc-4.8的，我将/usr/libexec/gcc下的依赖库也做了软链接
-    ln -s /opt/rh/devtoolset-8/root/lib/gcc/x86_64-redhat-linux/8 /usr/libexec/gcc/x86_64-redhat-linux
-    ln -s /opt/rh/devtoolset-8/root/lib/gcc/x86_64-redhat-linux/8 /usr/lib/gcc/x86_64-redhat-linux
-    
-    至此就将gcc,g++升级成功了
-    
-    1.2 升级cmake
-    
-    我的服务器的centos-7.9 默认的cmake版本是2.8.12.2，在项目编译过程中，我察觉到有个库需要cmake>=3.0 固尝试决定升级cmake来解决该问题
-    先下载文件，下载在一个自定义的目录下，我的涉及系统的c/c++或者其他软件以来的程序一般都下载在/usr/local/src目录下
-    cd /usr/local/src
-    wget https://cmake.org/files/v3.14/cmake-3.14.2.tar.gz 
-    tar -vzxf cmake-3.14.2.tar.gz 
-    
-    删除已安装的cmake版本
-    yum remove cmake -y
-    cd cmake-3.14.2
-    
-    安装基本的编译工具
-    ./configure              # 可携带此参数指定安装目录 --prefix=/usr/local/cmake 。 我直接在源码里安装的
-    make && make install 
-    
-    创建软链接
-    ln -s /usr/local/bin/cmake /usr/bin/cmake
-    
-    查看版本
-    cmake --version
-    
-    1.3 安装llvm 安装这个是比较麻烦的，依赖的东西比较多,我下载的版本是11.0.0 因为在编译过程中也报了clang的版本太低，需要升级
-    
-    cd /usr/local/src 
-    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/llvm-11.0.0.src.tar.xz
-    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/clang-11.0.0.src.tar.xz
-    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/compiler-rt-11.0.0.src.tar.xz
-    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/clang-tools-extra-11.0.0.src.tar.xz
-    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/libcxx-11.0.0.src.tar.xz
-    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/libcxxabi-11.0.0.src.tar.xz
-    
-    对下载的包进行解压
-    tar xvf llvm-11.0.0.src.tar.xz
-    tar xvf clang-11.0.0.src.tar.xz
-    tar xvf compiler-rt-11.0.0.src.tar.xz
-    tar xvf clang-tools-extra-11.0.0.src.tar.xz
-    tar xvf libcxx-11.0.0.src.tar.xz
-    tar xvf libcxxabi-11.0.0.src.tar.xz
-    
-    对文件名进行重命名
-    mv clang-11.0.0.src clang 
-    mv compiler-rt-11.0.0.src compiler-rt
-    mv clang-tools-extra-11.0.0.src extra
-    mv libcxx-11.0.0.src libcxx
-    mv libcxxabi-11.0.0.src libcxxabi
-    
-    cd llvm-11.0.0.src
-    mkdir build
-    cd build
-    cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_RTTI=ON -DLLVM_ENABLE_PROJECTS="clang;libcxx;libcxxabi" -G "Unix Makefiles" ..
-    make && make install 
-    
-    查看版本
-    clang -v
-    
-  2> 下载opencv(官网地址: https://opencv.org/releases/)
-    cd /usr/local/src
-    wget https://github.com/opencv/opencv/archive/4.5.4.zip
-    unzip opencv-4.5.4.zip
-    cd opencv-4.5.4
-    mkdir build
-    cd build 
-    cmake -D BUILD_SHARED_LIBS=ON -D BUILD_TESTS=OFF -D CMAKE_BUILD_TYPE=RELEASE  ..
-    make && make install
-    
-    vim /etc/ld.so.conf.d/opencv.conf
-    /usr/local/lib64
-    /usr/local/lib
-    
-    检验是否成功
-    pkg-config --libs opencv
-    pkg-config --cflags opencv
+    2> 下载opencv(官网地址: https://opencv.org/releases/)
+      cd /usr/local/src
+      wget https://github.com/opencv/opencv/archive/4.5.4.zip
+      unzip opencv-4.5.4.zip
+      cd opencv-4.5.4
+      mkdir build
+      cd build 
+      cmake -D BUILD_SHARED_LIBS=ON -D BUILD_TESTS=OFF -D CMAKE_BUILD_TYPE=RELEASE  ..
+      make && make install
+
+      vim /etc/ld.so.conf.d/opencv.conf
+      /usr/local/lib64
+      /usr/local/lib
+
+      检验是否成功
+      pkg-config --libs opencv
+      pkg-config --cflags opencv
     
   
   
