@@ -96,7 +96,6 @@
     
     失败：报错
     error: linking with `cc` failed: exit status: 1
-  |
     = note: "cc" "-m64" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.0.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.1.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.10.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.11.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.12.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.13.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.14.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.15.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.2.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.3.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.4.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.5.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.6.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.7.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.8.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.build_script_build.19887d06-cgu.9.rcgu.o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a.40u2j0b0m2rkp502.rcgu.o" "-Wl,--as-needed" "-L" "/home/admin/rust_src/star_code_middleware/target/debug/deps" "-L" "/usr/lib64/llvm" "-L" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libcc-dcca41d1b58fd635.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libvcpkg-b3bf30d5f8a5367a.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libpkg_config-5abe0320b4197c6a.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libopencv_binding_generator-ead8b485cb58b10f.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libmaplit-3ab555efaab62bb0.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libregex-84dc590185c6397b.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libaho_corasick-d54b0d9e8dd84d99.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libmemchr-6061dad8797913cc.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libregex_syntax-5f99d85e7aa20c3c.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libpercent_encoding-ab63f59cece6956f.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libclang-1a53dcc85fff53bc.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libclang_sys-dda1a10344c9b4c8.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libjobserver-ace04bdef08a2feb.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/liblibc-5af17482beb691ed.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libshlex-e092b08f03baf28e.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libsemver-c0453dc51ce2a047.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libsemver_parser-c374f4ade63c50b9.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libpest-6da4ccd115db57e2.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libucd_trie-fb32211bfa135433.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libonce_cell-7fa1babf08843306.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libglob-7f4b6d05fc88e096.rlib" "/home/admin/rust_src/star_code_middleware/target/debug/deps/libdunce-75bd6320fbe0957f.rlib" "-Wl,--start-group" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-7c582493123fc1dd.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-1392776590706175.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libminiz_oxide-2eb6edf4d031cd1e.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libadler-33a7ad3b5f7fedf6.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7d32adce541987d9.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-5cb369120f224726.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-6ab2efd1d2f431a9.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-567f611439253c7e.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_detect-ebbc63efd6d2efc5.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_demangle-862830f0d224a2e1.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libhashbrown-cad0401ae7a80e32.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_std_workspace_alloc-fd54290077194763.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-4fc3313c8ccb1ec0.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-19bf8dffe82b09d4.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-afc95b1640c4beca.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-aff6658baa87e3d1.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_std_workspace_core-8be8a1689a4f7b48.rlib" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-5284934f66073844.rlib" "-Wl,--end-group" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-2a0b2a4f96acb821.rlib" "-Wl,-Bdynamic" "-lclang" "-lgcc_s" "-lutil" "-lrt" "-lpthread" "-lm" "-ldl" "-lc" "-Wl,--eh-frame-hdr" "-Wl,-znoexecstack" "-L" "/home/admin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-o" "/home/admin/rust_src/star_code_middleware/target/debug/build/opencv-e85d84372df8863a/build_script_build-e85d84372df8863a" "-Wl,--gc-sections" "-pie" "-Wl,-zrelro" "-Wl,-znow" "-nodefaultlibs"
     = note: /home/admin/rust_src/star_code_middleware/target/debug/deps/libclang-1a53dcc85fff53bc.rlib(clang-1a53dcc85fff53bc.clang.d927368b-cgu.3.rcgu.o): In function `clang::Entity::evaluate':
             /home/admin/.cargo/registry/src/mirrors.ustc.edu.cn-12df342d903acd47/clang-1.0.3/src/lib.rs:1839: undefined reference to `clang_Cursor_Evaluate'
@@ -214,13 +213,64 @@
     ./configure              # 可携带此参数指定安装目录 --prefix=/usr/local/cmake 。 我直接在源码里安装的
     make && make install 
     
-    创建软件
+    创建软链接
+    ln -s /usr/local/bin/cmake /usr/bin/cmake
     
+    查看版本
+    cmake --version
     
-  
-  
+    1.3 安装llvm 安装这个是比较麻烦的，依赖的东西比较多,我下载的版本是11.0.0 因为在编译过程中也报了clang的版本太低，需要升级
+    
+    cd /usr/local/src 
+    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/llvm-11.0.0.src.tar.xz
+    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/clang-11.0.0.src.tar.xz
+    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/compiler-rt-11.0.0.src.tar.xz
+    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/clang-tools-extra-11.0.0.src.tar.xz
+    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/libcxx-11.0.0.src.tar.xz
+    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/libcxxabi-11.0.0.src.tar.xz
+    
+    对下载的包进行解压
+    tar xvf llvm-11.0.0.src.tar.xz
+    tar xvf clang-11.0.0.src.tar.xz
+    tar xvf compiler-rt-11.0.0.src.tar.xz
+    tar xvf clang-tools-extra-11.0.0.src.tar.xz
+    tar xvf libcxx-11.0.0.src.tar.xz
+    tar xvf libcxxabi-11.0.0.src.tar.xz
+    
+    对文件名进行重命名
+    mv clang-11.0.0.src clang 
+    mv compiler-rt-11.0.0.src compiler-rt
+    mv clang-tools-extra-11.0.0.src extra
+    mv libcxx-11.0.0.src libcxx
+    mv libcxxabi-11.0.0.src libcxxabi
+    
+    cd llvm-11.0.0.src
+    mkdir build
+    cd build
+    cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_RTTI=ON -DLLVM_ENABLE_PROJECTS="clang;libcxx;libcxxabi" -G "Unix Makefiles" ..
+    make && make install 
+    
+    查看版本
+    clang -v
+    
   2> 下载opencv(官网地址: https://opencv.org/releases/)
-  opencv-4.5.4(https://github.com/opencv/opencv/archive/4.5.4.zip)
+    cd /usr/local/src
+    wget https://github.com/opencv/opencv/archive/4.5.4.zip
+    unzip opencv-4.5.4.zip
+    cd opencv-4.5.4
+    mkdir build
+    cd build 
+    cmake -D BUILD_SHARED_LIBS=ON -D BUILD_TESTS=OFF -D CMAKE_BUILD_TYPE=RELEASE  ..
+    make && make install
+    
+    vim /etc/ld.so.conf.d/opencv.conf
+    /usr/local/lib64
+    /usr/local/lib
+    
+    检验是否成功
+    pkg-config --libs opencv
+    pkg-config --cflags opencv
+    
   
   
   
